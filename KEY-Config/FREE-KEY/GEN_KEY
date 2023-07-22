@@ -1,0 +1,44 @@
+import requests, json, os, binascii
+from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
+from cryptography.hazmat.backends import default_backend
+
+class _FREE_KEY_ONE_DAY_:
+            def _GEN_KEY_(self):
+                        try:
+                                    _CONFIG_DATE_ = requests.get('https://timeapi.io/api/Time/current/zone?timeZone=Asia/Ho_Chi_Minh').json()['date']
+                                    _CONFIG_KEY_ = requests.get('https://raw.githubusercontent.com/hhankdie/Extra-FB_Client/main/KEY-Config/FREE-KEY/THONG_TIN_KEY').json()
+                                    _CONFIG_API_ = requests.get('https://raw.githubusercontent.com/hhankdie/Extra-FB_Client/main/__Admin_Config__').json()
+                                    self.__API_WEB1S__ = _CONFIG_API_['WEB1S_API']
+                                    self._KEY_A_ = f'LTDZVL{_CONFIG_DATE_}'   #KEY MÃ HÓA
+                                    self._KEY_B_MH1_ = _CONFIG_KEY_['SECRET-KEY']  #KEY AN TOÀN
+                                    self._KEY_B_MH2_ = _CONFIG_KEY_['IV']   #IV
+                                    self.DATA_FORMAT = _CONFIG_KEY_['DATA_FORMAT']   #DATA FORMAT
+                                    self.KEY_MODE = _CONFIG_KEY_['MODE']   #MODE
+                                    self.KEY_SIZE = _CONFIG_KEY_['KEY_SIZE']  #KEYSIZE
+                        except:
+                                    exit('Lỗi Bất Định...')
+
+                        key_bytes = self._KEY_B_MH1_.encode('utf-8')
+                        iv_bytes = self._KEY_B_MH2_.encode('utf-8')
+                        self._KEY_B_MH2_ = key_bytes[:int(self.KEY_SIZE) // 8]
+                        cipher = Cipher(algorithms.AES(self._KEY_B_MH2_), getattr(modes, self.KEY_MODE)(iv_bytes), backend=default_backend())
+                        encryptor = cipher.encryptor()
+                        encrypted_data = encryptor.update(self._KEY_A_.encode('utf-8')) + encryptor.finalize()
+                        if self.DATA_FORMAT == 'Hex':
+                                    self._FINAL_KEY_ = binascii.hexlify(encrypted_data).decode('utf-8')
+                                    return self._FINAL_KEY_
+                                    
+            def _UP_KEY_(self):
+                        try:
+                                    _LINK_KEY_ = requests.post('https://api.mocky.io/api/mock', data=json.dumps({'charset': 'UTF-8','content': f'Key Hôm Nay: {self._FINAL_KEY_}','content_type': 'application/json','expiration': '1day','secret': self._FINAL_KEY_,'status': '200'})).json()['link']
+                                    _WEB1S_KEY_ = requests.get(f'https://web1s.com/api?token={self.__API_WEB1S__}&url={_LINK_KEY_}').json()['shortenedUrl']
+                                    return _WEB1S_KEY_
+                        except:
+                                    exit('Lỗi Bất Định...')
+
+try:
+			_FREE_KEY_ONE_DAY_ = _FREE_KEY_ONE_DAY_()
+			_FINAL_KEY_ = _FREE_KEY_ONE_DAY_._GEN_KEY_()
+			_WEB1S_KEY_ = _FREE_KEY_ONE_DAY_._UP_KEY_()
+except:
+			exit('Lỗi Bất Định...')
