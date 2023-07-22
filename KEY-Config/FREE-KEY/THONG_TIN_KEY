@@ -1,0 +1,8 @@
+{
+	"SECRET-KEY": "LeThanhPro-9F3NL",
+	"IV": "4309175862918046",
+	"KEY_SIZE": "128",
+	"DATA_SET": "Hex",
+	"DATA_FORMAT": "Hex",
+	"MODE": "CBC"
+}
