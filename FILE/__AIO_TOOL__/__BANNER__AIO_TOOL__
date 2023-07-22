@@ -1,0 +1,59 @@
+import requests, json, os, sys, datetime
+from time import sleep
+_RED_ = '\033[38;5;196m'
+_DEFAULT_ = '\033[0m'
+_GREEN_ = '\033[38;5;40m'
+_YELLOW_ = '\033[1;33m'
+_BLUE_ = '\033[34m'
+_PURPLE_ = '\033[35m'
+_BLUE2_ = '\033[36m'
+_UNKNOWN_ = '\033[38;5;226m'
+_UN1_ = '\033[38;5;129m'
+_UN2_ = '\033[38;5;105m'
+_UN3_ = '\033[38;5;202m'
+_UN4_ = '\033[38;5;168m'
+_UN5_ = '\033[38;5;27m'
+_UN6_ = '\033[38;5;225m'
+_UN7_ = '\033[38;5;35m'
+_UN8_ = '\033[38;5;86m'
+_UN9_ = '\033[38;5;69m'
+_UN10_ = '\033[38;5;205m'
+
+class _XXX_XXX_XXX_XXX_XXX_XXX_:
+			def _CLEAR_(self):
+						os.system("cls" if os.name == "nt" else "clear")
+			def _PRINT_BN1_(self, a):
+						for i in range(len(a)):
+									sys.stdout.write(a[i])
+									sys.stdout.flush()
+									sleep(0.009)
+						print()
+			def _THONG_TIN_CLIENT_(self):
+						__ADMIN_CONFIG__ = requests.get('https://raw.githubusercontent.com/hhankdie/Extra-FB_Client/main/__Admin_Config__').json()
+						__TOOL_CONFIG__ = requests.get('https://raw.githubusercontent.com/hhankdie/Extra-FB_Client/main/FILE/__AIO_TOOL__/__Cau_Hinh__').json()
+						self.__AUTHOR__ = __ADMIN_CONFIG__['AUTHOR']
+						self.__FACEBOOK__ = __ADMIN_CONFIG__['FB']
+						self.__SUPPORT__ = __ADMIN_CONFIG__['SP']
+						self.__THONG_BAO__ = __TOOL_CONFIG__['NOTIFICATION']
+						self.__VERSION__ = __TOOL_CONFIG__['VERSION']
+			def _LE_THANH_BN1_(self):
+						_LE_THANH_BN1_ = f"""
+{_GREEN_} VẬN HÀNH VÀ PHÁT TRIỂN BỞI {_RED_} {self.__AUTHOR__} {_GREEN_} MỌI HÀNH VI BUÔN BÁN ĐỀU BỊ COI LÀ TRÁI PHÉP
+{_DEFAULT_}─────────────────────────────────────────────────────────────────────────────────────
+	- | {_UN1_}Client: {_UN2_}AIO-Profile {_DEFAULT_}- {_UN1_}Version: {_UN2_}{self.__VERSION__}{_DEFAULT_}
+	- | {_UN4_}Author: {_UN3_}{self.__AUTHOR__}{_DEFAULT_}
+	- | {_UN6_}FB: {_UN5_}{self.__FACEBOOK__}{_DEFAULT_}
+	- | {_UN8_}Hỗ Trợ Cập Nhật Và Báo Lỗi: {_UN9_}{self.__SUPPORT__}{_DEFAULT_}
+	- | {_UN7_}Thông Báo: {self.__THONG_BAO__}{_DEFAULT_}
+{_DEFAULT_}─────────────────────────────────────────────────────────────────────────────────────"""
+						return _LE_THANH_BN1_
+
+try:
+			call_class = _XXX_XXX_XXX_XXX_XXX_XXX_()
+			call_class._CLEAR_()
+			call_class._THONG_TIN_CLIENT_()
+			_LE_THANH_BN1_ = call_class._LE_THANH_BN1_()
+			call_class._PRINT_BN1_(_LE_THANH_BN1_)
+except:
+			os.system("cls" if os.name == "nt" else "clear")
+			exit(f'{_DEFAULT_}Lỗi Bất Định...')
