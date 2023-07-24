@@ -1,1 +1,65 @@
+import requests, json, sys
+from time import sleep
 
+_RED_ = '\033[38;5;196m'
+_DEFAULT_ = '\033[0m'
+_GREEN_ = '\033[38;5;40m'
+_YELLOW_ = '\033[1;33m'
+_BLUE_ = '\033[34m'
+_PURPLE_ = '\033[35m'
+_BLUE2_ = '\033[36m'
+_UNKNOWN_ = '\033[38;5;226m'
+_UN1_ = '\033[38;5;129m'
+_UN2_ = '\033[38;5;105m'
+_UN3_ = '\033[38;5;202m'
+_UN4_ = '\033[38;5;168m'
+_UN5_ = '\033[38;5;27m'
+_UN6_ = '\033[38;5;225m'
+_UN7_ = '\033[38;5;35m'
+_UN8_ = '\033[38;5;86m'
+_UN9_ = '\033[38;5;69m'
+_UN10_ = '\033[38;5;205m'
+
+def _ICV2_(_LeThanh_, end, _Text_Delay_, _Text_Tre_):
+            for i in range(len(_LeThanh_)):
+                        sys.stdout.write(_LeThanh_[i])
+                        sys.stdout.flush()
+                        sleep(_Text_Delay_)
+            print(end=end)
+            sleep(_Text_Tre_)
+
+class PAID_KEY_SERVER:
+            def __CHECK_KEY__(self):
+                    try:
+                            TODAY = requests.get('https://api.api-ninjas.com/v1/worldtime?city=Nam%20Dinh', headers={'Origin': 'https://api-ninjas.com'}).json()['date']
+                            ClientIP = requests.get('https://ipwho.is/').json()['ip']
+                            SERVER_KEY = requests.get('https://raw.githubusercontent.com/hhankdie/Extra-FB_Client/main/KEY-Config/PAID-KEY/JSON_KEY').json()
+                    except:
+                            exit('Lỗi Bất Định...')
+                    try:
+                            for LIST_KEY in SERVER_KEY:
+                                    KEY_SV = LIST_KEY['KEY']
+                                    if _CHECK_KEY_ == KEY_SV:
+                                            K3 = LIST_KEY['KEY-INFO']
+                                            IP_SERVER = K3['IP_AUTHORIZE']
+                                            TYPE_KEY = K3['TYPE']
+                                            if IP_SERVER == ClientIP:              
+                                                    TIME_ACTIVE = K3['ACTIVE']
+                                                    TIME_EXPIRED = K3['EXPIRED']
+                                                    if TIME_EXPIRED > TODAY:
+                                                            _ICV2_(f'{_GREEN_}[ KEY: {_YELLOW_}{_CHECK_KEY_} {_GREEN_}| TYPE: {_YELLOW_}{TYPE_KEY} {_GREEN_}| ACTIVE: {_YELLOW_}{TIME_ACTIVE} {_GREEN_}| EXPIRED: {_YELLOW_}{TIME_EXPIRED} {_GREEN_}]{_DEFAULT_}', end='\n', _Text_Delay_=0.009, _Text_Tre_=5)
+                                                    else:
+                                                            _ICV2_(f'{_GREEN_}[ KEY: {_YELLOW_}{_CHECK_KEY_} {_GREEN_}| TYPE: {_YELLOW_}{TYPE_KEY} {_GREEN_}| ACTIVE: {_YELLOW_}{TIME_ACTIVE} {_GREEN_}| EXPIRED: {_YELLOW_}{None} {_GREEN_}]{_DEFAULT_}', end='\n', _Text_Delay_=0.009, _Text_Tre_=5)
+                                                            exit()
+                                            else:
+                                                    _ICV2_(f'{_GREEN_}[ KEY: {_YELLOW_}{_CHECK_KEY_} {_GREEN_}| TYPE: {_YELLOW_}{TYPE_KEY} {_GREEN_}| AUTHORIZE: {_RED_}Failure {_GREEN_}|', end='\n', _Text_Delay_=0.009, _Text_Tre_=5)
+                    except UnboundLocalError:
+                            exit()
+try:
+        _ICV2_(f'[🌸] {_UN10_}Cảm Ơn Bạn Đã Tin Tưởng Và Sử Dụng Hệ Thống Paid-KEY Của Chúng Tôi...', end='', _Text_Delay_=0.009, _Text_Tre_=5)
+        print(f'\r                                      {_DEFAULT_}                                        \r', end='')
+        _ICV2_(f'{_GREEN_}Sau Khi Mua Sẽ Câp Nhật Tự Động Sau 5-30s | ', end='', _Text_Delay_=0.009, _Text_Tre_=5)
+        _CHECK_KEY_ = input(f'Nhập KEY Của Bạn: {_YELLOW_}')
+        PAID_KEY_SERVER().__CHECK_KEY__()
+except KeyboardInterrupt:
+        exit()
