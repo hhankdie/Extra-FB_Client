@@ -1,0 +1,20 @@
+[
+    {
+        "KEY": "__#LeThanhSv1__",
+        "KEY-INFO": {
+            "IP_AUTHORIZE": "14.247.217.45",
+            "TYPE": "LifeTime",
+            "ACTIVE": "0000-00-00",
+            "EXPIRED": "2077-12-31"
+        }
+    },
+    {
+        "KEY": "__#ThanhHuyenSv4__",
+        "KEY-INFO": {
+            "IP_AUTHORIZE": "103.74.104.254",
+            "TYPE": "Partner Key",
+            "ACTIVE": "0000-00-00",
+            "EXPIRED": "2024-06-28"
+        }
+    }
+]
