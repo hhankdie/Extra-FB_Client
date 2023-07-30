@@ -68,4 +68,4 @@ def _CHECK_KEY_():
 try:
 			_CHECK_KEY_()
 except:
-			exit('Lỗi Bất Định...')
+			None
